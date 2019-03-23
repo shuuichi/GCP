@@ -47,3 +47,37 @@ video    API
 Cloud Video Intelligence API
 
 
+
+
+#@title 検出したオブジェクトをハイライトする関数 highlight_objects を定義
+
+highlight_objects は　関数として定義している　コメントの裏に隠れていた。
+
+
+from PIL import Image, ImageDraw
+
+def highlight_objects(image_file, objects):
+  image = Image.open(image_file)
+  draw = ImageDraw.Draw(image, "RGBA")
+  
+  width = image.getbbox()[-2]
+  height = image.getbbox()[-1]
+  
+  for object in objects:
+    n_vertex_lt = tuple(object['boundingPoly']['normalizedVertices'][0].values())
+    n_vertex_rb = tuple(object['boundingPoly']['normalizedVertices'][2].values())
+    
+    vertex_lt = (int(n_vertex_lt[0] * width), int(n_vertex_lt[1] * height))
+    vertex_rb = (int(n_vertex_rb[0] * width), int(n_vertex_rb[1] * height))
+    
+    # bounding box
+    draw.rectangle(xy=(vertex_lt, vertex_rb), outline='red')
+    
+    # probability
+    object['name']
+    draw.text(xy=(vertex_lt[0], vertex_lt[1]-10),
+              text=object['name'] + ':' + str(format(object['score'], '.3f')),
+              fill='red')    
+  display(image)
+  
+  
