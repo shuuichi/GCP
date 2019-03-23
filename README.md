@@ -88,4 +88,15 @@ def highlight_objects(image_file, objects):
  
  
  
+ 質問
+ 
+ 　　和書分離できるか
+   
+   シングルソース　でもできるが　精度がまだ
+   
+   
+   
+   
+ 
+ 
  
