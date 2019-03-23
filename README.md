@@ -81,3 +81,11 @@ def highlight_objects(image_file, objects):
   display(image)
   
   
+
+
+言語　翻訳
+　まず　文章から言語を解析してから　翻訳する
+ 
+ 
+ 
+ 
